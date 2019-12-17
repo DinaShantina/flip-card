@@ -4,20 +4,27 @@ import ReactCardFlip from "react-card-flip";
 
 const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  //   const [infos, setInfos] = useState([]);
-  //   useEffect(() => {
-  //     randomName();
-  //   }, []);
+  const [newName, setNewName] = useState([]);
+  useEffect(() => {
+    randomName();
+  }, []);
   const handleClick = (event, index) => {
     event.preventDefault();
     setIsFlipped(!isFlipped);
     console.log("click");
   };
 
-  //   const randomName = () => {
-  //     const res = infos.split("");
-  //     console.log(res);
-  //   };
+  const randomName = () => {
+    const res = infos.split(" ");
+
+    console.log(res.concat(newName));
+    console.log("NAMES", res);
+    // setNewName(res.push(newName));
+    // const random = Math.floor(Math.random() * res.length);
+    // console.log("hello", res);
+
+    // console.log("hello", setNewName);
+  };
   return (
     <div>
       <div>
@@ -32,7 +39,7 @@ const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
           <div key="front" onClick={handleClick} style={styles.card3}>
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               <h2>{infos.toString()}</h2>
-              <button onClick={() => onDelete(key)}>X</button>
+              <button onClick={onDelete}>X</button>
             </div>
           </div>
 

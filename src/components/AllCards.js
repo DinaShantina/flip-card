@@ -10,11 +10,11 @@ const styles = {
   }
 };
 const AllCards = () => {
-  const [items, setItems] = useState([
-    { id: 1, value: "hello" },
-    { id: 2, value: "bye" },
-    { id: 3, value: "kidding" }
-  ]);
+  //   const [items, setItems] = useState([
+  //     { id: 1, value: "hello" },
+  //     { id: 2, value: "bye" },
+  //     { id: 3, value: "kidding" }
+  //   ]);
   const [infos, setInfos] = useState([]);
 
   const [hasError, setErrors] = useState(false);
@@ -37,9 +37,10 @@ const AllCards = () => {
   //     setInfos(data.name);
   //     console.log("hello", setInfos);
   //   };
-  const deleteCard = key => {
-    infos.splice(key, 1);
-    console.log(infos);
+  const deleteCard = id => {
+    infos.splice(id, 1);
+    // setInfos(newInfos);
+    // console.log(newInfos);
   };
 
   return (
@@ -50,10 +51,10 @@ const AllCards = () => {
           <SmallCard
             infos={info.name}
             proffesion={info.company.catchPhrase}
-            key={index.toString()}
+            key={index}
             id={info.id}
             styles={styles}
-            onDelete={deleteCard}
+            onDelete={deleteCard(info.id)}
           />
         ))}
       </div>
