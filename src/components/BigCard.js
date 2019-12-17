@@ -16,7 +16,6 @@ class BigCard extends Component {
   componentDidMount() {
     axios
       .get("https://jsonplaceholder.typicode.com/users")
-
       .then(response => {
         this.setState({
           infos: response.data,
