@@ -1,71 +1,48 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactCardFlip from "react-card-flip";
-// import Flippy, { FrontSide, BackSide } from "react-flippy";
-class SmallCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isFlipped: false,
-      infos: [],
-      infoSmall: [this.props.item]
-    };
-  }
 
-  handleClick = event => {
+const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  //   const [infos, setInfos] = useState([]);
+  //   useEffect(() => {
+  //     randomName();
+  //   }, []);
+  const handleClick = (event, index) => {
     event.preventDefault();
-    this.setState(prevState => ({
-      isFlipped: !prevState.isFlipped
-    }));
+    setIsFlipped(!isFlipped);
     console.log("click");
   };
 
-  render() {
-    const { infos, item, infoSmall } = this.state;
-    // const { details } = this.props;
-    return (
+  //   const randomName = () => {
+  //     const res = infos.split("");
+  //     console.log(res);
+  //   };
+  return (
+    <div>
       <div>
-        {this.props.items.map((item, index) => {
-          return (
-            <div key={index}>
-              <ReactCardFlip
-                cardZIndex="auto"
-                isFlipped={this.state.isFlipped}
-                flipSpeedFrontToBack={1.5}
-                flipSpeedBackToFront={1.5}
-                id={item.id}
-                key={index}
-              >
-                <div
-                  key="front"
-                  onClick={this.handleClick}
-                  style={this.props.styles.card3}
-                >
-                  <div
-                    style={{ display: "flex", justifyContent: "space-around" }}
-                  >
-                    <h2>{item.value}</h2>
-
-                    <button onClick={() => this.props.onDelete(index)}>
-                      X
-                    </button>
-                  </div>
-                </div>
-
-                <div
-                  key="back"
-                  onClick={this.handleClick}
-                  style={this.props.styles.card3}
-                >
-                  <h2>Back</h2>
-                </div>
-              </ReactCardFlip>
+        <ReactCardFlip
+          cardZIndex="auto"
+          isFlipped={isFlipped}
+          flipSpeedFrontToBack={1.5}
+          flipSpeedBackToFront={1.5}
+          id={id}
+          key={key}
+        >
+          <div key="front" onClick={handleClick} style={styles.card3}>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <h2>{infos.toString()}</h2>
+              <button onClick={() => onDelete(key)}>X</button>
             </div>
-          );
-        })}
+          </div>
+
+          <div key="back" onClick={handleClick} style={styles.card3}>
+            <h2>{proffesion.toString()}</h2>
+          </div>
+        </ReactCardFlip>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default SmallCard;
