@@ -45,34 +45,30 @@ class BigCard extends Component {
             <span className="sr-only">Loading...</span>
           </Spinner>
         ) : (
-          <ReactCardFlip isFlipped={this.state.isFlipped}>
+          <ReactCardFlip
+            isFlipped={this.state.isFlipped}
+            flipSpeedFrontToBack={1.5}
+            flipSpeedBackToFront={1.5}
+          >
             <div onClick={this.handleClick} style={this.props.styles.card}>
               <h3 className="alert alert-success">Guest attending</h3>
               <ol style={{ padding: "30px" }}>
-                {infos.map(name => {
-                  return (
-                    <li key={name.id} style={this.props.styles.text}>
-                      {name.name}
-                    </li>
-                  );
-                })}
+                {infos.map(name => (
+                  <li key={name.id} style={this.props.styles.text}>
+                    {name.name}
+                  </li>
+                ))}
               </ol>
             </div>
 
-            <div
-              onClick={this.handleClick}
-              style={this.props.styles.card2}
-              className="back"
-            >
+            <div onClick={this.handleClick} style={this.props.styles.card}>
               <h3 className="alert alert-warning">Guest proffesion</h3>
               <ol style={{ padding: "35px" }}>
-                {infos.map(proffesion => {
-                  return (
-                    <li key={proffesion.id} style={this.props.styles.text}>
-                      {proffesion.company.catchPhrase}
-                    </li>
-                  );
-                })}
+                {infos.map(proffesion => (
+                  <li key={proffesion.id} style={this.props.styles.text}>
+                    {proffesion.company.catchPhrase}
+                  </li>
+                ))}
               </ol>
             </div>
           </ReactCardFlip>
