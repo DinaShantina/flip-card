@@ -14,43 +14,11 @@ const SmallCard = ({
   name
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [newName, setNewName] = useState([]);
-  const [hasError, setErrors] = useState(true);
-  const [details, setDetails] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      res
-        .json()
-        .then(res => setDetails(res))
-        .catch(err => setErrors(err));
-    }
-    fetchData();
-  }, []);
-
-  useEffect(() => {}, []);
 
   const handleClick = event => {
     event.preventDefault();
-
     setIsFlipped(!isFlipped);
     console.log("Click");
-  };
-
-  const randomName = () => {
-    let newArrayName = [];
-    console.log(details);
-    let user = details.map(item => item.name.split(" "));
-    newArrayName = [...user];
-
-    const users = newArrayName[Math.floor(Math.random() * newArrayName.length)];
-    for (var i = 1; i <= newArrayName.length; i++) {
-      users.push(newArrayName[i]);
-    }
-    // console.log(newArrayName[3]);
-    console.log("AAA", newArrayName);
-    console.log("NEW", users);
   };
 
   return (
@@ -66,8 +34,8 @@ const SmallCard = ({
         <div onClick={handleClick} style={styles.card3}>
           <button
             type="button"
-            onClick={() => {
-              onDelete(id);
+            onClick={e => {
+              onDelete(name);
             }}
             className="close"
             style={{ padding: "1rem" }}

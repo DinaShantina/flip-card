@@ -16,7 +16,7 @@ const AllCards = () => {
   const [infos, setInfos] = useState([]);
 
   const [hasError, setErrors] = useState(false);
-
+  const id = uuid();
   useEffect(() => {
     async function fetchData() {
       const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -53,18 +53,20 @@ const AllCards = () => {
   const names = getNames(getFullNames(infos));
   const surnames = getSurnames(getFullNames(infos));
   const allNames = twoArrayPermutator(names, surnames);
-
-  console.log("NAMES", allNames);
+  // const nameId = twoArrayPermutator(allNames, id);
 
   const professionTwo = twoArrayPermutator(proffesion1, proffesion2);
-  console.log("hey", professionTwo);
 
-  const deleteCard = id => {
-    alert("Button Clicked!");
+  const deleteCard = name => {
+    // let targetIndex = allNames.findIndex(each => each.name === e.target.name);
+    // allNames.splice(targetIndex - 1, 1);
+    // allNames.filter(el => el.id !== name.id);
+    // console.log("IIIII", name);
     // const newInfos = allNames.splice(index, 1);
     // const newInfos = infos.filter(info => info.id !== id);
     // setInfos(newInfos);
   };
+
   return (
     <div className="container">
       {allNames.map((name, index) => (
@@ -74,7 +76,7 @@ const AllCards = () => {
             id={index}
             name={name}
             styles={styles}
-            onDelete={deleteCard}
+            onDelete={() => deleteCard()}
           />
         </div>
       ))}
