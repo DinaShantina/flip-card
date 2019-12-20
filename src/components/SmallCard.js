@@ -2,7 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactCardFlip from "react-card-flip";
 
-const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
+const SmallCard = ({
+  key,
+  id,
+  styles,
+  onDelete,
+  index,
+  infos,
+  info,
+  proffesion,
+  name
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [newName, setNewName] = useState([]);
   const [hasError, setErrors] = useState(true);
@@ -19,9 +29,7 @@ const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    randomName();
-  }, [details]);
+  useEffect(() => {}, []);
 
   const handleClick = event => {
     event.preventDefault();
@@ -53,10 +61,9 @@ const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
         flipSpeedFrontToBack={1.5}
         flipSpeedBackToFront={1.5}
         id={id}
-        key={id}
+        key={index}
       >
         <div onClick={handleClick} style={styles.card3}>
-          {/* <div style={{ display: "flex", justifyContent: "space-around" }}> */}
           <button
             type="button"
             onClick={() => {
@@ -68,9 +75,8 @@ const SmallCard = ({ key, id, styles, onDelete, index, infos, proffesion }) => {
           >
             <span aria-hidden="true">X</span>
           </button>
-          <h2 style={{ margin: "40% auto", textAlign: "center" }}>{infos}</h2>
+          <h2 style={{ margin: "40% auto", textAlign: "center" }}>{name}</h2>
         </div>
-        {/* </div> */}
 
         <div onClick={handleClick} style={styles.card3}>
           <h2 style={{ margin: "40% auto", textAlign: "center" }}>
