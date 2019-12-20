@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
 const SmallCard = ({
@@ -18,9 +17,18 @@ const SmallCard = ({
   const handleClick = event => {
     event.preventDefault();
     setIsFlipped(!isFlipped);
-    console.log("Click");
   };
 
+  const deleteCard = name => {
+    var arrTexts = [name];
+    const itemIndex = arrTexts.findIndex(item => item === name);
+    if (itemIndex > -1) {
+      arrTexts.splice(itemIndex, 1);
+    } else {
+      arrTexts.push(name);
+    }
+    console.log(name);
+  };
   return (
     <div style={{ marginBottom: "5rem" }}>
       <ReactCardFlip
@@ -29,13 +37,14 @@ const SmallCard = ({
         flipSpeedFrontToBack={1.5}
         flipSpeedBackToFront={1.5}
         id={id}
+        index={id}
         key={index}
       >
         <div onClick={handleClick} style={styles.card3}>
           <button
             type="button"
-            onClick={e => {
-              onDelete(name);
+            onClick={() => {
+              deleteCard(name);
             }}
             className="close"
             style={{ padding: "1rem" }}

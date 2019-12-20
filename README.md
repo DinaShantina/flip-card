@@ -1,3 +1,11 @@
+Hello,
+
+For me was a bit advanced level of a project since i had a problem with putting the new names in new state, so that why i my delete function is not working cuase there is no id. I didn't have time also to pay attention to the css, since i stuck on the part for generating new name and proffessions.
+Thank you for giving me opporutunty to train my skills.
+Greetings
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
